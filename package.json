@@ -1,0 +1,23 @@
+{
+  "name": "team-profile-generator",
+  "version": "1.0.0",
+  "description": "Profile Generator",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KeithVIP/team-profile-generator.git"
+  },
+  "author": "Keith Yanosy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KeithVIP/team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/KeithVIP/team-profile-generator#readme"
+}
