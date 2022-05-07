@@ -6,6 +6,10 @@ const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const Member = require('./lib/Member');
 
+function initApp() {
+    addMember();
+}
+
 const teamMembers = [];
 
 const addMember = () => {
@@ -17,7 +21,7 @@ const addMember = () => {
     return inquirer.prompt([
         {
             type: 'list',
-            name: 'role',
+            name: 'job',
             message: "Please select the team member's job",
             choices: ['Engineer', 'Intern', 'Manager']
 
@@ -65,7 +69,7 @@ const addMember = () => {
             type: 'input',
             name: 'github',
             message: "Please enter the team member's Github username",
-            when: (input) => input.job === "Intern",
+            when: (input) => input.job === "Engineer",
             validate: githubInput => {
                 if (githubInput) {
                     return true;
@@ -80,8 +84,8 @@ const addMember = () => {
             name: 'school',
             message: "Please enter the intern's school",
             when: (input) => input.job === "Intern",
-            validate: nameInput => {
-                if (nameInput) {
+            validate: schoolInput => {
+                if (schoolInput) {
                     return true;
                 } else {
                     console.log("Please enter the intern's school!")
@@ -93,8 +97,8 @@ const addMember = () => {
             name: 'officeNumber',
             message: "Please enter the team member's office number",
             when: (input) => input.job === "Manager",
-            validate: nameInput => {
-                if (nameInput) {
+            validate: officeInput => {
+                if (officeInput) {
                     return true;
                 } else {
                     console.log("Please enter the team member's office number!")
@@ -102,11 +106,10 @@ const addMember = () => {
             }
         },
         {
-            type: 'list',
+            type: 'confirm',
             name: 'confirmAddMember',
             message: 'Would you like to add more team members?',
-            choices: ['Yes', "No"]
-
+            default: false
         }
     ])
         .then(memberData => {
@@ -133,3 +136,5 @@ const addMember = () => {
             }
         })
 };
+
+initApp();
