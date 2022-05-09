@@ -23,7 +23,7 @@ https://drive.google.com/file/d/1lv6pImnVShTL5KuA-MT6FxZxyhsOJwEZ/preview
  
   ## Installation
 
-  NPM/NODE
+  NPM/NODE/JEST/INQUIRER
 
   ## Usage
 
