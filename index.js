@@ -1,3 +1,5 @@
+const generateHTML = require('./src/generateHTML');
+
 const fs = require('fs');
 const inquirer = require('inquirer');
 
@@ -6,18 +8,9 @@ const Intern = require('./lib/Intern');
 const Manager = require('./lib/Manager');
 const Member = require('./lib/Member');
 
-function initApp() {
-    addMember();
-}
-
-const teamMembers = [];
+const teamArray = [];
 
 const addMember = () => {
-    console.log(`
-    
-    Adding team members
-    
-    `);
     return inquirer.prompt([
         {
             type: 'list',
@@ -112,8 +105,16 @@ const addMember = () => {
             default: false
         }
     ])
+//     .then(internInput => {
+//         const  { name, id, email, officeNumber } = managerInput; 
+//         const intern = new Intern (name, id, email, school);
+
+//         teamArray.push(intern); 
+//         console.log(intern); 
+//     })
+// };
         .then(memberData => {
-            let { name, id, email, job, github, school, confirmAddMember } = memberData;
+            let { name, id, email, job, github, school, officeNumber, confirmAddMember } = memberData;
             let member;
 
             if (job === "Engineer") {
@@ -125,16 +126,44 @@ const addMember = () => {
                 job = new Intern(name, id, email, school);
 
                 console.log(member);
-            }
+                teamArray.push(member);
 
-            teamMembers.push(member);
+            } else (job === "Manager") 
+                job = new Manager(name, id, email, officeNumber);
+
+                console.log(member);
+                teamArray.push(member);
+
+            teamArray.push(member);
 
             if (confirmAddMember) {
-                return addMember(teamMembers);
+                return addMember(teamArray);
             } else {
-                return teamMembers;
+                return teamArray;
             }
-        })
+
+    })
 };
 
-initApp();
+const writeFile = data => {
+    fs.writeFile('./index.html', data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        } else {
+            console.log("Team Profile has been created!")
+        }
+    })
+};
+
+   addMember()
+    .then(teamArray => {
+        return generateHTML(teamArray);
+    })
+    .then(pageHTML => {
+        return writeFile(pageHTML);
+    })
+    .catch(err => {
+        console.log(err);
+    });
+

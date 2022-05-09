@@ -1,0 +1,8 @@
+.jumbotron {
+    border-radius: 0;
+    background-color: crimson;
+}
+
+.card-body {
+    background-color: rgb(241, 237, 237);
+}
