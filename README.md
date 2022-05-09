@@ -2,8 +2,10 @@
 
   
   # team-profile-generator
+  
+  ## Walkthrough Video
 
-(Watch the walkthrough video](https://drive.google.com/file/d/1lv6pImnVShTL5KuA-MT6FxZxyhsOJwEZ/preview)
+https://drive.google.com/file/d/1lv6pImnVShTL5KuA-MT6FxZxyhsOJwEZ/preview
 
   # Description
   
